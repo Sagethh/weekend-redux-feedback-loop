@@ -14,6 +14,10 @@ function Feeling() {
     const previousPageHandler = () => {
         history.push('/');
     };
+    const homeHandler = () => {
+        history.push('/');
+    };
+
 
     const feelingHandler = (event) => { // function to handle the form input
         event.preventDefault(); // no default action allowed, bad
@@ -55,8 +59,9 @@ function Feeling() {
                     </TextField>
                   <br></br>
                   <br></br>
-                  <Button variant="contained" color="primary" onClick={previousPageHandler}>&lt; Previous Page</Button>
-                  <Button variant="contained" color="primary" onClick={feelingHandler}> Next Page &gt;</Button>
+                  <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={previousPageHandler}>&lt; Previous Page</Button>
+                  <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={homeHandler}>Return Home</Button>
+                  <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={feelingHandler}> Next Page &gt;</Button>
               </header>
           </section>
       );

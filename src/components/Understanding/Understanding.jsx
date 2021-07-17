@@ -14,6 +14,9 @@ function Understanding() { // main function for this page
     const previousPageHandler = () => {
         history.push('/feeling');
     };
+    const homeHandler = () => {
+        history.push('/');
+    };
 
     const understandingHandler = (event) => { // function to handle the form input
         event.preventDefault(); // no default action allowed, bad
@@ -55,8 +58,9 @@ function Understanding() { // main function for this page
                   </TextField>
                 <br></br>
                 <br></br>
-                <Button variant="contained" color="primary" onClick={previousPageHandler}>&lt; Previous Page</Button>
-                <Button variant="contained" color="primary" onClick={understandingHandler}>Next Page &gt;</Button>
+                <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={previousPageHandler}>&lt; Previous Page</Button>
+                <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={homeHandler}>Return Home</Button>
+                <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={understandingHandler}>Next Page &gt;</Button>
             </header>
         </section>
     );

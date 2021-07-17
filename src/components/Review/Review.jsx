@@ -10,6 +10,9 @@ import Typography from '@material-ui/core/Typography';
 function Review() {
     const feedbackReducer = useSelector( state => state.feedbackReducer);
     const history = useHistory();
+    const homeHandler = () => {
+        history.push('/');
+    };
 
     const reviewHandler = () => {
         axios({
@@ -24,16 +27,16 @@ function Review() {
         .catch(error => {
             console.log(error);
         });
-    }
+    };
 
     return (
         <Card variant="outlined">
         <CardContent>
-          <Typography variant="h3" component="h2">
+          <Typography variant="h4" component="h2">
             <u>Survey Results for {feedbackReducer.name}</u>
           </Typography>
           <br />
-          <Typography variant="h6   " component="h2">
+          <Typography variant="h6" component="h2">
             Feeling (0 - 10): <b><u>{feedbackReducer.feeling}</u></b>
             <br />
             Understanding (0 - 10): <b><u>{feedbackReducer.understanding}</u></b>
@@ -43,11 +46,12 @@ function Review() {
             Comments: <b><u>{feedbackReducer.comments}</u></b>
           </Typography>
         </CardContent>
-        <CardActions>
-            <Button variant="contained" color="primary" onClick={reviewHandler}>Submit</Button>
+        <CardActions style={{justifyContent: "center"}}>
+            <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={homeHandler}>Discard</Button>
+            <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={reviewHandler}>Submit</Button>
         </CardActions>
       </Card>
-      );
-    }
+    );
+};
 
 export default Review;

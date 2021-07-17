@@ -48,7 +48,7 @@ function Home(){
     return(
         <section>
             <h2>
-                Welcome, please start the survey by pressing the start button below.
+                Welcome, please start by     entering your name
             </h2>
             <TextField
                 id="standard-multiline-flexible"
@@ -59,7 +59,7 @@ function Home(){
             />
             <br />
             <br />
-      <Button variant="contained" color="primary" onClick={nameHandler}>Start</Button>
+      <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={nameHandler}>Start</Button>
     </section>
     )
 } 

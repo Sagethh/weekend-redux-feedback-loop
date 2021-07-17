@@ -1,14 +1,22 @@
-import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {useState} from 'react';
-import axios from 'axios';
-import React from 'react';
-import {useDispatch} from 'react-redux';
+import Button from '@material-ui/core/Button';
 
 function Success() {
-    return (
-        <div></div>
-    );
-};
+    const history = useHistory();
+    const successHandler = () => {
+        history.push('/');
+    };
 
-export default Success;
+    return(
+        <section>
+            <header>
+                <h1>
+                    SUCCESS!
+                </h1>
+            </header>
+            <p>Your survey has been submitted</p>
+            <p>Click on the button below to return Home</p>
+            <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={successHandler}>Home</Button>
+        </section>
+    )
+}export default Success;
