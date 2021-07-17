@@ -16,7 +16,7 @@ function Comments() {
         event.preventDefault(); // no default action allowed, bad
             console.log(comments); // otherwise, put it though to the main reducer and push the user to the next page
             dispatch({
-                type: 'SET_FEELING',
+                type: 'SET_COMMENTS',
                 payload: comments
             });
             history.push('/understanding');
