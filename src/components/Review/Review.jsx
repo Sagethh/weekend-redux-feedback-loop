@@ -30,7 +30,7 @@ function Review() {
         <Card variant="outlined">
         <CardContent>
           <Typography variant="h3" component="h2">
-            <u>Survey Results for name{feedbackReducer.name}</u>
+            <u>Survey Results for {feedbackReducer.name}</u>
           </Typography>
           <br />
           <Typography variant="h6   " component="h2">
@@ -43,6 +43,9 @@ function Review() {
             Comments: <b><u>{feedbackReducer.comments}</u></b>
           </Typography>
         </CardContent>
+        <CardActions>
+            <Button variant="contained" color="primary" onClick={reviewHandler}>Submit</Button>
+        </CardActions>
       </Card>
       );
     }

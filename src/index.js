@@ -9,6 +9,8 @@ import logger from 'redux-logger';
 
 const feedbackReducer = (state = {}, action) => {
   switch(action.type) {
+      case 'SET_NAME':
+          return{...state, name: action.payload}
       case 'SET_FEELING':
           return{...state, feeling: action.payload};
       case 'SET_UNDERSTANDING':
