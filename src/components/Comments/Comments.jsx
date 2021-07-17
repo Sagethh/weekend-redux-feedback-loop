@@ -22,7 +22,7 @@ function Comments() {
                 type: 'SET_COMMENTS',
                 payload: comments
             });
-            history.push('/understanding');
+            history.push('/review');
         }
 
       return ( // what will be displayed on the DOM
@@ -39,8 +39,8 @@ function Comments() {
                         />
                   <br></br>
                   <br></br>
-                  <Button variant="contained" color="primary" onClick={previousPageHandler}> Previous Page </Button>
-                  <Button variant="contained" color="primary" onClick={commentsHandler}>Next Page</Button>
+                  <Button variant="contained" color="primary" onClick={previousPageHandler}>&lt; Previous Page</Button>
+                  <Button variant="contained" color="primary" onClick={commentsHandler}>Next Page &gt;</Button>
               </header>
           </section>
       );

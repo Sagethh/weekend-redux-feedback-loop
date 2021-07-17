@@ -53,8 +53,8 @@ function Support() { // main function for this page
                       </TextField>
                     <br></br>
                     <br></br>
-                    <Button variant="contained" color="primary" onClick={previousPageHandler}> Previous Page </Button>
-                    <Button variant="contained" color="primary" onClick={supportHandler}>Next Page</Button>
+                    <Button variant="contained" color="primary" onClick={previousPageHandler}>&lt; Previous Page</Button>
+                    <Button variant="contained" color="primary" onClick={supportHandler}>Next Page &gt;</Button>
                 </header>
             </section>
         );

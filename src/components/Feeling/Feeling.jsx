@@ -55,8 +55,8 @@ function Feeling() {
                     </TextField>
                   <br></br>
                   <br></br>
-                  <Button variant="contained" color="primary" onClick={previousPageHandler}>Previous Page</Button>
-                  <Button variant="contained" color="primary" onClick={feelingHandler}> Next Page </Button>
+                  <Button variant="contained" color="primary" onClick={previousPageHandler}>&lt; Previous Page</Button>
+                  <Button variant="contained" color="primary" onClick={feelingHandler}> Next Page &gt;</Button>
               </header>
           </section>
       );
