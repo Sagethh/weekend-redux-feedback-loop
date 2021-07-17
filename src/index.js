@@ -1,27 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App/App';
+import App from './components/App/App.jsx';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-const feedbackReducer = (state = [], action) => {
-
+const feedbackReducer = (state = {}, action) => {
   switch(action.type) {
       case 'SET_FEELING':
           return{...state, feeling: action.payload};
-
       case 'SET_UNDERSTANDING':
           return{...state, understanding: action.payload};
-
       case 'SET_SUPPORT':
           return{...state, support: action.payload};
-
       case 'SET_COMMENTS':
           return{...state, comments: action.payload};
-
       default:
           return state;
   }
