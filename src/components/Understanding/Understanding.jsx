@@ -20,7 +20,7 @@ function Understanding() { // main function for this page
             return false;
         }
         else {
-            console.log({}); // check to make sure we are getting what we want
+            console.log(understanding); // check to make sure we are getting what we want
             dispatch({
                 type: 'SET_UNDERSTANDING',
                 payload: understanding
