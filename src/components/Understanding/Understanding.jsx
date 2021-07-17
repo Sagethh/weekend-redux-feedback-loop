@@ -3,18 +3,14 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 function Understanding() { // main function for this page
-    const [understanding, setUnderstanding] = useState([]);
+    const [understanding, setUnderstanding] = useState('');
     const history = useHistory();
     const dispatch = useDispatch();
 
     const handleUnderstanding = (event) => { // function to handle the form input
         event.preventDefault(); // no default action allowed, bad
-        if(understanding === '') {
-            alert('Cannot continue: select a rating to continue');
-            return false;
-        }
-        else if(understanding > 10) {
-            alert('Cannot continue: must select a number between 0 and 10');
+        if (understanding === '' || understanding > 10) { // if understanding is empty or greater than 10, tell the user to put something in and deny continuing
+            alert('Please select a number between 1 - 10');
             return false;
         }
         else {
@@ -27,14 +23,14 @@ function Understanding() { // main function for this page
         };
     };
 
-    return (
+    return ( // what will be displayed on the DOM
         <section>
             <header>
                 <h1>How well did you understand the material today?</h1>
                 <input
                 type='number'
                 required 
-                placeholder="How well did you understand?"
+                placeholder="1 - 10"
                 value={understanding}
                 onChange={(event) => setUnderstanding(event.target.value)}>
                 </input>
