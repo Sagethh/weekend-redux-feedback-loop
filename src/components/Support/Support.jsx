@@ -1,16 +1,21 @@
-import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 
 function Support() { // main function for this page
     const [support, setSupport] = useState('');
     const history = useHistory();
     const dispatch = useDispatch();
+    const numberHandler = [{value: 0,label: "0"},{value: 1,label: "1"},{value: 2,label: "2"},{value: 3,label: "3"},{value: 4,label: "4"},{value: 5,label: "5"},{value: 6,label: "6"},{value: 7,label: "7"},{value: 8,label: "8"},{value: 9,label: "9"},{value: 10,label: "10"},];
+    // big long thingy for materialUI, gives options 1-10 for the dropdown
 
-    const handleSupport = (event) => { // function to handle the form input
+    const supportHandler = (event) => { // function to handle the form input
         event.preventDefault(); // no default action allowed, bad
-        if (support === '' || support > 10) { // if support is empty or greater than 10, tell the user to put something in and deny continuing
-            alert('Please select a number between 1 - 10');
+        if (support === '') { // if support is empty, tell the user to put something in and deny continuing
+            alert('Please select a number');
             return false;
         }
         else {
@@ -22,20 +27,33 @@ function Support() { // main function for this page
             history.push('/comments')
         }}
 
-    return ( // what will be displayed on the DOM
-        <section>
-            <header>
-                <h1>How well did you feel supported today?</h1>
-                <input
-                required 
-                placeholder="1 - 10"
-                value={support}
-                onChange={(event) => setSupport(event.target.value)}>
-                </input>
-                <button onClick={handleSupport}>Next Page</button>
-            </header>
-        </section>
-    );
+        return ( // what will be displayed on the DOM
+            <section>
+                <header>
+                    <h1>How well did you feel supported today?</h1>
+                    <TextField
+                      id="outlined-select-currency-native"
+                      select
+                      label="Rating"
+                      value={support}
+                      onChange={(event) => setSupport(event.target.value)}
+                      SelectProps={{
+                          native: true,
+                      }}
+                      variant="outlined"
+                      >
+                              {numberHandler.map((option) => (
+                                  <option key={option.value} value={option.value}>
+                                  {option.label}
+                                  </option>
+                              ))}
+                      </TextField>
+                    <br></br>
+                    <br></br>
+                    <Button variant="contained" color="primary" onClick={supportHandler}>Next Page</Button>
+                </header>
+            </section>
+        );
 };
 
 export default Support; 
