@@ -9,6 +9,7 @@ import Support from '../Support/Support';
 import Understanding from '../Understanding/Understanding';
 import Review from '../Review/Review';
 import Success from '../Success/Success';
+import Admin from '../Admin/Admin';
 
 function App() { // main function for this file
 
@@ -42,6 +43,7 @@ function App() { // main function for this file
         <Route path="/comments" component={Comments} />
         <Route path="/review"  component={Review} />
         <Route path="/success" component={Success} />
+        <Route path="/admin" component={Admin} />
     </div>
     </Router>
   );

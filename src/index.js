@@ -8,17 +8,19 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 const feedbackReducer = (state = {}, action) => {
-  switch(action.type) {
-      case 'SET_NAME':
-          return{...state, name: action.payload}
-      case 'SET_FEELING':
-          return{...state, feeling: action.payload};
-      case 'SET_UNDERSTANDING':
-          return{...state, understanding: action.payload};
-      case 'SET_SUPPORT':
-          return{...state, support: action.payload};
-      case 'SET_COMMENTS':
-          return{...state, comments: action.payload};
+    switch(action.type) {
+        case 'SET_NAME':
+            return{...state, name: action.payload}
+        case 'SET_FEELING':
+            return{...state, feeling: action.payload};
+        case 'SET_UNDERSTANDING':
+            return{...state, understanding: action.payload};
+        case 'SET_SUPPORT':
+            return{...state, support: action.payload};
+        case 'SET_COMMENTS':
+            return{...state, comments: action.payload};
+        case 'GET_FEEDBACK':
+            return{...state, data: action.payload};
       default:
           return state;
   }
