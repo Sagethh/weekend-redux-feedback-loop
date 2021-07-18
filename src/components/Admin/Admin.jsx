@@ -42,19 +42,19 @@ function Admin() {
         getData();
     }, []);
 
-    const flagForReview = (id, flagged) => {
-        console.log(id);
-        console.log(flagged);
+    const checkFlagged = (item, id) => { // function for checking flagged state
+        console.log(item)
+        console.log(id.flagged);
+        // test console logs
         axios({
             method: 'PUT',
-            url: `/api/feedback/${id}/flagged`
+            url: `/api/feedback/${item}`
         })
         .then(response => {
             console.log(response.flagged);
             getData();
         })
         .catch(error => {
-            console.log(id);
             console.log(error);
         });
     };
@@ -96,7 +96,7 @@ function Admin() {
         <Table aria-label="customized table">
             <TableHead>
             <TableRow>
-                <StyledTableCell>ID</StyledTableCell>
+                <StyledTableCell>Survey ID</StyledTableCell>
                 <StyledTableCell align="right">Feeling</StyledTableCell>
                 <StyledTableCell align="right">Understanding</StyledTableCell>
                 <StyledTableCell align="right">Support</StyledTableCell>
@@ -115,7 +115,7 @@ function Admin() {
                     <StyledTableCell align="right">{listItem.understanding}</StyledTableCell>
                     <StyledTableCell align="right">{listItem.support}</StyledTableCell>
                     <StyledTableCell align="right">{listItem.comments}</StyledTableCell>
-                    <StyledTableCell align="right"><Checkbox color="primary" onClick={() => flagForReview(listItem.id, listItem.flagged)} inputProps={{'aria-label': 'secondary checkbox'}}/></StyledTableCell>
+                    <StyledTableCell align="right"><Checkbox color="primary" checked={listItem.flagged} onChange={() => checkFlagged(listItem.id, listItem)} inputProps={{'aria-label': 'secondary checkbox'}}/></StyledTableCell>
                     <StyledTableCell align="right"><Button variant="contained" color="secondary" className="delete" onClick={() => deleteItem(listItem.id)} startIcon={<DeleteIcon />}>
                         Delete
                     </Button>

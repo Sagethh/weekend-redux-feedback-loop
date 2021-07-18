@@ -59,7 +59,7 @@ function Home() {
             />
             <br />
             <br />
-            <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={nameHandler}>Start</Button>
+        <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={nameHandler}>Start</Button>
         </section>
     );
 };
