@@ -11,16 +11,16 @@ import Review from '../Review/Review';
 import Success from '../Success/Success';
 import Admin from '../Admin/Admin';
 
-function App() { // main function for this file
+function App() {
 
-  const fetchFeedback = () => { // main function to get feedback from data
+  const getFeedback = () => { // main function to get feedback from data
     axios({ // axios GET request
       method: 'GET',
       url: '/api/feedback'
     })
     .then(response => { // after getting data, set the payload to the response given
       dispatchEvent({
-        type: 'SET_FEEDBACK',
+        type: 'GET_FEEDBACK',
         payload: response.data
       });
     })

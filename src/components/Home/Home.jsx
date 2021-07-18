@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-function Home(){
+function Home() {
     const [feedback, setFeedback] = useState([]);
     const [name, setName] = useState('');
     const dispatch = useDispatch();

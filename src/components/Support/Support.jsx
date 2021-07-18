@@ -9,7 +9,7 @@ function Support() { // main function for this page
     const [support, setSupport] = useState('');
     const history = useHistory();
     const dispatch = useDispatch();
-    const numberHandler = [{value: 0,label: "0"},{value: 1,label: "1"},{value: 2,label: "2"},{value: 3,label: "3"},{value: 4,label: "4"},{value: 5,label: "5"},{value: 6,label: "6"},{value: 7,label: "7"},{value: 8,label: "8"},{value: 9,label: "9"},{value: 10,label: "10"},];
+    const numberHandler = [{value: 0,label: "Select An Option"},{value: 1,label: "1"},{value: 2,label: "2"},{value: 3,label: "3"},{value: 4,label: "4"},{value: 5,label: "5"},{value: 6,label: "6"},{value: 7,label: "7"},{value: 8,label: "8"},{value: 9,label: "9"},{value: 10,label: "10"},];
     // big long thingy for materialUI, gives options 1-10 for the dropdown
     const previousPageHandler = () => {
         history.push('/understanding');

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,26 +11,28 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';    
 
 function Admin() {
+    const [data, setData] = useState([]);
     const dispatch = useDispatch();
-    let rows = [];
-    axios({
-        method: 'GET',
-        url: '/api/feedback'
-    })
-    .then(response => {
-        dispatch({
-            type: "GET_FEEDBACK",
-            payload: response.data
+
+    const getData = () => {
+        axios({
+            method: 'GET',
+            url: '/api/feedback'
+        }) // get data from our server
+        .then(response => {
+            dispatch({
+                type: "GET_FEEDBACK",
+                payload: response.data
+            });
+        setData(response.data);
         });
-        for (let n = 0; n < response.data.length; n++) {
-            console.log(response.data[n].name, response.data[n].feeling, response.data[n].understanding, response.data[n].support, response.data[n].comments);
-            rows.push(createData(response.data[n].name, response.data[n].feeling, response.data[n].understanding, response.data[n].support, response.data[n].comments),);
-            console.log(rows);
-        }
-    });
+    };
+    useEffect(() => {
+        getData();
+    }, []);
 
 
-    const StyledTableCell = withStyles((theme) => ({
+     const StyledTableCell = withStyles((theme) => ({ // START OF MATERIALUI STYLING
         head: {
             backgroundColor: theme.palette.common.black,
             color: theme.palette.common.white,
@@ -45,22 +47,11 @@ function Admin() {
             backgroundColor: theme.palette.action.hover,
           },
         },
-      }))(TableRow);
+      }))(TableRow); // END OF MATERIALUI STYLING
 
-    function createData(name, feeling, understanding, support, comments) {
-        return { name, feeling, understanding, support, comments };
-      }
-      
-      const fuck = () => {
-        (rows.map((row) => (
-              console.log(row.feeling)
-          )))
-      }
-    
 
     return (
         <TableContainer component={Paper}>
-            <button onClick={fuck}>fuck</button>
         <Table aria-label="customized table">
             <TableHead>
             <TableRow>
@@ -72,15 +63,15 @@ function Admin() {
             </TableRow>
             </TableHead>
             <TableBody>
-            {rows.map((row) => (
-                <StyledTableRow key={row.name}>
+            {data.map((listItem) => (
+                <StyledTableRow>
                 <StyledTableCell component="th" scope="row">
-                    {row.name}
+                    {listItem.name}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.feeling}</StyledTableCell>
-                <StyledTableCell align="right">{row.understanding}</StyledTableCell>
-                <StyledTableCell align="right">{row.support}</StyledTableCell>
-                <StyledTableCell align="right">{row.comments}</StyledTableCell>
+                <StyledTableCell align="right">{listItem.feeling}</StyledTableCell>
+                <StyledTableCell align="right">{listItem.understanding}</StyledTableCell>
+                <StyledTableCell align="right">{listItem.support}</StyledTableCell>
+                <StyledTableCell align="right">{listItem.comments}</StyledTableCell>
                 </StyledTableRow>   
             ))}
             </TableBody>
