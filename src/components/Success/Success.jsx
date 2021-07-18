@@ -1,4 +1,4 @@
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 function Success() {

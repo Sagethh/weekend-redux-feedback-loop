@@ -7,8 +7,8 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-const feedbackReducer = (state = {}, action) => {
-    switch(action.type) {
+const feedbackReducer = (state = {}, action) => { // main reducer that takes in all data
+    switch(action.type) { // switch statement that looks for what is trying to be done and returns accordingly
         case 'SET_NAME':
             return{...state, name: action.payload}
         case 'SET_FEELING':

@@ -21,28 +21,38 @@ function Admin() {
         history.push('/');
     };
 
-    const getData = () => {
+    const getData = () => { // function to retrieve the data from the database
         axios({
             method: 'GET',
             url: '/api/feedback'
-        }) // get data from our server
+        })
         .then(response => {
             dispatch({
                 type: "GET_FEEDBACK",
                 payload: response.data
             });
-        setData(response.data);
-        });
+        setData(response.data); // sets data we received so we can use it
+        })
+        .catch(error =>{
+            console.log(error);
+        })
     };
-    useEffect(() => {
+    useEffect(() => { // get data on page load
         getData();
     }, []);
 
-    const deleteData = () => {
-        console.log(data);
-        dispatch({
-            type: "REMOVE_FEEDBACK",
-            payload: data
+    const deleteItem = (item) => { // function to delete the selected item
+        console.log(item);
+        axios({
+            method: 'DELETE',
+            url: `/api/feedback/${item}`
+        })
+        .then(response => {
+            console.log(response.data);
+            getData();  // refresh data after we delete an item
+        })
+        .catch(error => {
+            console.log(error);
         });
     };
 
@@ -78,7 +88,7 @@ function Admin() {
             </TableHead>
             <TableBody>
             {data.map((listItem) => (
-                <StyledTableRow>
+                <StyledTableRow key={listItem.id}>
                 <StyledTableCell component="th" scope="row">
                     {listItem.id}
                 </StyledTableCell>
@@ -86,7 +96,7 @@ function Admin() {
                 <StyledTableCell align="right">{listItem.understanding}</StyledTableCell>
                 <StyledTableCell align="right">{listItem.support}</StyledTableCell>
                 <StyledTableCell align="right">{listItem.comments}</StyledTableCell>
-                <StyledTableCell align="right"><Button variant="contained" color="secondary" className="delete" onClick={deleteData} startIcon={<DeleteIcon />}
+                <StyledTableCell align="right"><Button variant="contained" color="secondary" className="delete" onClick={() => deleteItem(listItem.id)} startIcon={<DeleteIcon />}
       >
         Delete
       </Button></StyledTableCell>
