@@ -21,9 +21,11 @@ const feedbackReducer = (state = {}, action) => {
             return{...state, comments: action.payload};
         case 'GET_FEEDBACK':
             return{...state, data: action.payload};
+        case 'REMOVE_FEEDBACK':
+            return state;
       default:
           return state;
-  }
+  };
 };
 
 const storeInstance = createStore(

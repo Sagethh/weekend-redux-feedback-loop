@@ -11,13 +11,12 @@ function Feeling() {
     const dispatch = useDispatch();
     const numberHandler = [{value: 0,label: "Select An Option"},{value: 1,label: "1"},{value: 2,label: "2"},{value: 3,label: "3"},{value: 4,label: "4"},{value: 5,label: "5"},{value: 6,label: "6"},{value: 7,label: "7"},{value: 8,label: "8"},{value: 9,label: "9"},{value: 10,label: "10"},];
     // big long thingy for materialUI, gives options 1-10 for the dropdown
-    const previousPageHandler = () => {
+    const previousPageHandler = () => { // handles sending the user to the last page
         history.push('/');
     };
-    const homeHandler = () => {
+    const homeHandler = () => { // handles sending the user home
         history.push('/');
     };
-
 
     const feelingHandler = (event) => { // function to handle the form input
         event.preventDefault(); // no default action allowed, bad
@@ -33,7 +32,7 @@ function Feeling() {
                 payload: feeling
             });
             history.push('/understanding');
-        }
+        };
     };
 
       return ( // what will be displayed on the DOM
@@ -57,8 +56,8 @@ function Feeling() {
                                 </option>
                             ))}
                     </TextField>
-                  <br></br>
-                  <br></br>
+                  <br />
+                  <br />
                   <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={previousPageHandler}>&lt; Previous Page</Button>
                   <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={homeHandler}>Return Home</Button>
                   <Button style={{width: '170px', height: '42px'}} variant="contained" color="primary" onClick={feelingHandler}> Next Page &gt;</Button>
