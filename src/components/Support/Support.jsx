@@ -18,21 +18,14 @@ function Support() { // main function for this page
         history.push('/');
     };
 
-
     const supportHandler = (event) => { // function to handle the form input
-        event.preventDefault(); // no default action allowed, bad
-        if (support === '') { // if support is empty, tell the user to put something in and deny continuing
-            alert('Please select a number');
-            return false;
-        }
-        else {
             console.log({support});
             dispatch({
                 type: 'SET_SUPPORT',
                 payload: support
             })
             history.push('/comments')
-        }}
+        }
 
         return ( // what will be displayed on the DOM
             <section>
