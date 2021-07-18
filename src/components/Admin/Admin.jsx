@@ -11,7 +11,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';  
 import DeleteIcon from '@material-ui/icons/Delete';
-import Button from '@material-ui/core/Button';  
+import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
 
 function Admin() {
     const [data, setData] = useState([]);
@@ -40,6 +41,23 @@ function Admin() {
     useEffect(() => { // get data on page load
         getData();
     }, []);
+
+    const flagForReview = (id, flagged) => {
+        console.log(id);
+        console.log(flagged);
+        axios({
+            method: 'PUT',
+            url: `/api/feedback/${id}/flagged`
+        })
+        .then(response => {
+            console.log(response.flagged);
+            getData();
+        })
+        .catch(error => {
+            console.log(id);
+            console.log(error);
+        });
+    };
 
     const deleteItem = (item) => { // function to delete the selected item
         console.log(item);
@@ -83,23 +101,25 @@ function Admin() {
                 <StyledTableCell align="right">Understanding</StyledTableCell>
                 <StyledTableCell align="right">Support</StyledTableCell>
                 <StyledTableCell align="right">Comments</StyledTableCell>
+                <StyledTableCell align="right">Needs Review?</StyledTableCell>
                 <StyledTableCell align="right">Delete</StyledTableCell>
             </TableRow>
             </TableHead>
             <TableBody>
             {data.map((listItem) => (
                 <StyledTableRow key={listItem.id}>
-                <StyledTableCell component="th" scope="row">
-                    {listItem.id}
-                </StyledTableCell>
-                <StyledTableCell align="right">{listItem.feeling}</StyledTableCell>
-                <StyledTableCell align="right">{listItem.understanding}</StyledTableCell>
-                <StyledTableCell align="right">{listItem.support}</StyledTableCell>
-                <StyledTableCell align="right">{listItem.comments}</StyledTableCell>
-                <StyledTableCell align="right"><Button variant="contained" color="secondary" className="delete" onClick={() => deleteItem(listItem.id)} startIcon={<DeleteIcon />}
-      >
-        Delete
-      </Button></StyledTableCell>
+                    <StyledTableCell component="th" scope="row">
+                        {listItem.id}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">{listItem.feeling}</StyledTableCell>
+                    <StyledTableCell align="right">{listItem.understanding}</StyledTableCell>
+                    <StyledTableCell align="right">{listItem.support}</StyledTableCell>
+                    <StyledTableCell align="right">{listItem.comments}</StyledTableCell>
+                    <StyledTableCell align="right"><Checkbox color="primary" onClick={() => flagForReview(listItem.id, listItem.flagged)} inputProps={{'aria-label': 'secondary checkbox'}}/></StyledTableCell>
+                    <StyledTableCell align="right"><Button variant="contained" color="secondary" className="delete" onClick={() => deleteItem(listItem.id)} startIcon={<DeleteIcon />}>
+                        Delete
+                    </Button>
+                    </StyledTableCell>
                 </StyledTableRow>   
             ))}
             </TableBody>

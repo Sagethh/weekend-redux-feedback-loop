@@ -19,11 +19,22 @@ router.delete('/:id', (req, res) => {
   .then(result => {
     res.sendStatus(200);
   })
-  .catch((error) => {
-    console.log('Error DELETE /api/feedback', error);
+  .catch(error => {
+    console.log(error);
     res.sendStatus(500);
+  });
+});
+
+router.put('/:id', (req, res) => {
+  pool.query('UPDATE "feedback" SET "flagged" = "!flagged" WHERE id=$1;', [req.params.id])
+  .then (result => {
+    res.sendStatus(200);
   })
-}); 
+  .catch(error => {
+    console.log(error);
+    res.sendStatus(500);
+  });
+});
 
 router.post('/',  (req, res) => { // main POST request
   let feedback = req.body; // set variable to call

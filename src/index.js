@@ -23,6 +23,8 @@ const feedbackReducer = (state = {}, action) => { // main reducer that takes in 
             return{...state, data: action.payload};
         case 'REMOVE_FEEDBACK':
             return state;
+        case 'FLAGGED':
+            return{...state, flagged: !action.payload}
       default:
           return state;
   };
